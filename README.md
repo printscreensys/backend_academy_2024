@@ -1,4 +1,17 @@
 ##  Генератор фракталов
+Оригинальная статья - https://flam3.com/flame_draves.pdf
+Реализация на Си - https://github.com/jameswmccarty/Fractal-Flame-Algorithm-in-C/tree/master
+
+**Поддерживаемые трансформации** \
+    linear\
+    sinusoidal\
+    spherical\
+    swirl\
+    horseshoe\
+    spiral\
+    blur\
+    gaussian\
+Также есть работа в многопоточном режиме, логарифмическая гамма-коррекция, суперсэмплинг, параметр симметрии, выбор цвета фона и цветов пикселей 
 
 Для запуска нужно собрать jar нужно запустить ```mvn package```
 
