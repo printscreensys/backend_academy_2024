@@ -1,7 +1,6 @@
 package backend.academy.fractal.domain;
 
 import java.awt.Color;
-import java.util.function.Consumer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +18,5 @@ public class Pixel {
 
     public void hit() {
         hitCount++;
-    }
-
-    public void transform(Consumer<Pixel> function) {
-        function.accept(this);
     }
 }

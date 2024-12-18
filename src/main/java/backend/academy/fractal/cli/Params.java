@@ -1,18 +1,20 @@
 package backend.academy.fractal.cli;
 
-import backend.academy.fractal.variation.Variation;
-import backend.academy.fractal.variation.Variations;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
-import lombok.Getter;
-import lombok.ToString;
 import java.awt.Color;
+import backend.academy.fractal.variation.Variations;
+import backend.academy.fractal.variation.Variation;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.ToString;
+
 
 @Getter
 @ToString
 @Parameters
+@SuppressWarnings({"MagicNumber", "ImportOrder"})
 public class Params {
     @Parameter(
         names = {"-p", "-path"},

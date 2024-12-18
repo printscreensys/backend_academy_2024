@@ -16,6 +16,7 @@ import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
+@SuppressWarnings("checkstyle:MagicNumber")
 public class Renderer {
     private int xRes;
     private int yRes;
@@ -58,8 +59,8 @@ public class Renderer {
         log.info("{} - вызвал render()", Thread.currentThread().getName());
         var random = ThreadLocalRandom.current();
         for (int sample = 0; sample < samplesNumber; sample++) {
-            double newX = random.nextDouble(0, xMax- xMin) - xMax;
-            double newY = random.nextDouble(0, yMax-yMin) - yMax;
+            double newX = random.nextDouble(0, xMax - xMin) - xMax;
+            double newY = random.nextDouble(0, yMax - yMin) - yMax;
 
             for (int iter = 0; iter < iterationsPerSample + 20; iter++) {
                 var curFunc = variations.get(iter % variations.size());
@@ -110,28 +111,28 @@ public class Renderer {
     }
 
     private List<List<Double>> generateCoefficients(int numVectors) {
-        List<List<Double>> coefficientVectors = new ArrayList<>();
+        List<List<Double>> coefficients = new ArrayList<>();
         for (int i = 0; i < numVectors; i++) {
             var vector = new ArrayList<Double>();
             for (int j = 0; j < 6; j++) {
                 vector.add(2 * ThreadLocalRandom.current().nextDouble() - 1);
             }
-            coefficientVectors.add(vector);
+            coefficients.add(vector);
         }
-        return coefficientVectors;
+        return coefficients;
     }
 
     private List<Color> generateColors(int numVectors) {
-        List<Color> colorVectors = new ArrayList<>();
+        List<Color> colors = new ArrayList<>();
         for (int i = 0; i < numVectors; i++) {
             var randomColor = new Color(
                 ThreadLocalRandom.current().nextInt(256),
                 ThreadLocalRandom.current().nextInt(256),
                 ThreadLocalRandom.current().nextInt(256)
             );
-            colorVectors.add(randomColor);
+            colors.add(randomColor);
         }
-        return colorVectors;
+        return colors;
     }
 
     @SneakyThrows

@@ -2,10 +2,10 @@ package backend.academy.fractal.cli;
 
 import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.ParameterException;
-import lombok.SneakyThrows;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import lombok.SneakyThrows;
 
 public class PathValidator implements IParameterValidator {
     @Override

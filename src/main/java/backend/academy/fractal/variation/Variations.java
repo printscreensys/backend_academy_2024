@@ -3,15 +3,16 @@ package backend.academy.fractal.variation;
 import backend.academy.fractal.domain.Point;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
+@SuppressWarnings("checkstyle:MagicNumber")
 public final class Variations {
-    private Variations() {}
-
-    public static Point linear(Point point) {
+    public Point linear(Point point) {
         return point;
     }
 
-    public static Point sinusoidal(Point point) {
+    public Point sinusoidal(Point point) {
         var x = point.x();
         var y = point.y();
         var newX = Math.sin(x);
@@ -20,7 +21,7 @@ public final class Variations {
         return new Point(newX, newY);
     }
 
-    public static Point spherical(Point point) {
+    public Point spherical(Point point) {
         var x = point.x();
         var y = point.y();
         var r = 1.0 / (Math.pow(x, 2) + Math.pow(y, 2));
@@ -30,7 +31,7 @@ public final class Variations {
         return new Point(newX, newY);
     }
 
-    public static Point swirl(Point point) {
+    public Point swirl(Point point) {
         var x = point.x();
         var y = point.y();
         var r = Math.pow(x, 2) + Math.pow(y, 2);
@@ -40,7 +41,7 @@ public final class Variations {
         return new Point(newX, newY);
     }
 
-    public static Point horseshoe(Point point) {
+    public Point horseshoe(Point point) {
         var x = point.x();
         var y = point.y();
         var r = 1.0 / Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
@@ -50,7 +51,7 @@ public final class Variations {
         return new Point(newX, newY);
     }
 
-    public static Point spiral(Point point) {
+    public Point spiral(Point point) {
         var x = point.x();
         var y = point.y();
         var r = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
@@ -61,7 +62,7 @@ public final class Variations {
         return new Point(newX, newY);
     }
 
-    public static Point blur(Point point) {
+    public Point blur(Point point) {
         var random = ThreadLocalRandom.current();
         var psy1 = random.nextDouble(0, 1);
         var psy2 = random.nextDouble(0, 1);
@@ -71,7 +72,8 @@ public final class Variations {
         return new Point(newX, newY);
     }
 
-    public static Point gaussian(Point point) {
+    @SuppressWarnings({"IllegalIdentifierName", "LambdaParameterName"})
+    public Point gaussian(Point point) {
         var random = ThreadLocalRandom.current();
         var psiSum = IntStream.range(0, 4).mapToDouble(_ -> ThreadLocalRandom.current().nextDouble(0, 1)).sum() - 2;
         var psi5 = random.nextDouble(0, 1);

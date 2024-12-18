@@ -11,7 +11,7 @@ public record FractalImage(Pixel[] data, int width, int height) {
         var data = new Pixel[width * height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                data[y*width + x] = new Pixel(x, y, 0, color);
+                data[y * width + x] = new Pixel(x, y, 0, color);
             }
         }
         return new FractalImage(data, width, height);
@@ -22,6 +22,9 @@ public record FractalImage(Pixel[] data, int width, int height) {
     }
 
     public Pixel pixel(int x, int y) {
+        if (!contains(x, y)) {
+            throw new IndexOutOfBoundsException();
+        }
         return data[y * width + x];
     }
 }

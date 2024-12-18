@@ -37,7 +37,7 @@ public final class ImageUtils {
      * @param image FractalImage
      * @return BufferedImage
      */
-    private static BufferedImage buffer(FractalImage image) {
+    private BufferedImage buffer(FractalImage image) {
         var bufferedImage = new BufferedImage(image.width(), image.height(), BufferedImage.TYPE_INT_RGB);
         for (int y = 0; y < image.height(); y++) {
             for (int x = 0; x < image.width(); x++) {
@@ -55,9 +55,9 @@ public final class ImageUtils {
      * @return новый цвет
      */
     public Color averageColor(Color color1, Color color2) {
-        int newR = (color1.getRed() + color2.getRed())/2;
-        int newG = (color1.getGreen() + color2.getGreen())/2;
-        int newB = (color1.getBlue() + color2.getBlue())/2;
+        int newR = (color1.getRed() + color2.getRed()) / 2;
+        int newG = (color1.getGreen() + color2.getGreen()) / 2;
+        int newB = (color1.getBlue() + color2.getBlue()) / 2;
 
         return new Color(newR, newG, newB);
     }
@@ -82,14 +82,14 @@ public final class ImageUtils {
                 var currentPixel = image.pixel(x, y);
                 var logHitCount = Math.log10(Math.max(currentPixel.hitCount(), 1)) / maxLogHitCount;
 
-                var newRed = (int) (backgroundColor.getRed() + Math.pow(logHitCount, (1d / gamma)) *
-                    (currentPixel.color().getRed() - backgroundColor.getRed()));
+                var newRed = (int) (backgroundColor.getRed() + Math.pow(logHitCount, (1d / gamma))
+                    * (currentPixel.color().getRed() - backgroundColor.getRed()));
 
-                var newGreen = (int) (backgroundColor.getGreen() + Math.pow(logHitCount, (1d / gamma)) *
-                    (currentPixel.color().getGreen() - backgroundColor.getGreen()));
+                var newGreen = (int) (backgroundColor.getGreen() + Math.pow(logHitCount, (1d / gamma))
+                    * (currentPixel.color().getGreen() - backgroundColor.getGreen()));
 
-                var newBlue = (int) (backgroundColor.getBlue() + Math.pow(logHitCount, (1d / gamma)) *
-                    (currentPixel.color().getBlue() - backgroundColor.getBlue()));
+                var newBlue = (int) (backgroundColor.getBlue() + Math.pow(logHitCount, (1d / gamma))
+                    * (currentPixel.color().getBlue() - backgroundColor.getBlue()));
 
                 var newColor = new Color(newRed, newGreen, newBlue);
                 currentPixel.color(newColor);
@@ -103,13 +103,14 @@ public final class ImageUtils {
      * @param samplingFactor множитель для сжатия
      * @return сглаженное изображение
      */
+    @SuppressWarnings({"checkstyle:MultipleVariableDeclarations", "checkstyle:NestedForDepth"})
     public FractalImage reduced(FractalImage image, int samplingFactor) {
         log.info("{} сжимает изображение в {} раз", Thread.currentThread().getName(), samplingFactor);
         log.info("Размер до сжатия - {} x {}", image.width(), image.height());
-        var newHeight = image.height()/samplingFactor;
-        var newWidth = image.width()/samplingFactor;
+        var newHeight = image.height() / samplingFactor;
+        var newWidth = image.width() / samplingFactor;
         log.info("Размер после сжатия - {} x {}", newWidth, newHeight);
-        var reducedImageData = new Pixel[newHeight*newWidth];
+        var reducedImageData = new Pixel[newHeight * newWidth];
 
         for (int y = 0; y < newHeight; y++) {
             for (int x = 0; x < newWidth; x++) {
