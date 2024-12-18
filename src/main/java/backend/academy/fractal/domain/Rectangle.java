@@ -1,4 +1,4 @@
-package backend.academy.domain;
+package backend.academy.fractal.domain;
 
 public record Rectangle(double x, double y, double width, double height) {
     boolean contains(Point p) {
