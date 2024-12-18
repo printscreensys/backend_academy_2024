@@ -96,8 +96,8 @@ public class Renderer {
                         var pointRot = new Point(xRot, yRot);
 
                         if (pointRot.isInArea(xMin, xMax, yMin, yMax)) {
-                            var x1 = (int) ((xMax - xRot) / ranX) * xRes;
-                            var y1 = (int) ((yMax - yRot) / ranY) * yRes;
+                            var x1 = (int) (((xMax - xRot) / ranX) * xRes);
+                            var y1 = (int) (((yMax - yRot) / ranY) * yRes);
                             if (image.contains(x1, y1)) {
                                 var color = colorVectors.get(vectorIndex % colorVectors.size());
                                 updateColor(x1, y1, color);
