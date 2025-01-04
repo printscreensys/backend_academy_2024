@@ -13,12 +13,15 @@ import lombok.ToString;
 
 @Getter
 @ToString
-@Parameters
+@Parameters(parametersValidators = MutualParametersValidator.class)
 @SuppressWarnings({"MagicNumber", "ImportOrder"})
 public class Params {
     @Parameter(
         names = {"-p", "-path"},
-        description = "Путь для сохранения изображения. Допустимые форматы '.png', '.jpeg', '.bmp'",
+        description = """
+            Путь для сохранения. Допустимые форматы изображения '.png', '.jpeg', '.bmp'.
+            Допустимый формат видео '.mp4'.
+            """,
         required = true,
         order = 0,
         validateWith = PathValidator.class
@@ -165,6 +168,25 @@ public class Params {
     )
     private List<Variation> variations = List.of(Variations::linear);
 
-    @Parameter(names = {"--help", "--h"}, description = "Помощь", help = true)
+    @Parameter(
+        names = {"-d", "-duration"},
+        description = "Длительность видео в секундах (от 1 до 120)",
+        order = 17
+    )
+    private int duration = 30;
+
+    @Parameter(
+        names = {"-fps", "-frames-per-second"},
+        description = "Частота кадров в секундах (от 1 до 120)",
+        order = 18
+    )
+    private int framesPerSecond = 60;
+
+
+    @Parameter(
+        names = {"--help", "--h"},
+        description = "Помощь",
+        help = true
+    )
     private boolean help;
 }

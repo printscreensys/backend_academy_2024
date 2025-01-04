@@ -22,7 +22,7 @@ public class PathValidator implements IParameterValidator {
         var parentDir = new File(path.getParent().toString());
         var fileNamePath = path.getFileName();
 
-        if (fileNamePath == null || !fileNamePath.toString().matches(".*\\.png|.*\\.jpg|.*\\.bmp")) {
+        if (fileNamePath == null || !fileNamePath.toString().matches(".*\\.png|.*\\.jpg|.*\\.bmp|.*\\.mp4")) {
             throw new ParameterException("Путь не содержит имени файла или имеет неподходящее расширение");
         }
 
